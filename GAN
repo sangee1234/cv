@@ -1,0 +1,62 @@
+GAN: Generative Advesarial Network
+
+-They belong to generative models
+-They produce/generate new content
+
+Uniform random variables can be pseudo-randomly generated
+-it is possible to define algorithms that generate number whose properties are close to random numbers
+-A computer can generate a sequnce of numbers that follows uniform distribution between 0 and 1
+
+Random variables can be expressed as result of an operation
+There exists different operations:
+-Rejection sampling: It expresses the random variable as result of process, that consist in sampling from a well
+ known distribution and to accept/reject the sampled value depedning on some condition. The mixture of right conditions give the right distribution
+-Metroplois-Hasing: it finds a markov chain such that the distribution of it corresponds to the distribution from which we want to samole.
+ after finding mc, we can simulate a trajectory over this MC to reach a steady state and then the last value obtained can be considered to be drawn from distribution
+
+GENERATIVE MODELS
+-If we want to generate images of dogs, the images are reshaped to a vector
+-All the same dimensional vectors that effectively give soomoething like a dog are distributed the same way as original g=dig  distribution
+-The problem of generating new image of dog is equivalent to problem of generating new vector follwing the dog distribution in N dimension
+-This is same problem of generating randomo variable wrt a distribution
+2 problems:
+-The dog distribution is complex
+-How to find out the actual distribution
+Generative model using neural network
+1. input random variable from a distribution -> generative network simple to complex -> output variable follow the required distribution -> reshape
+2. need to optimise tge network to get the right transformation function
+
+2 methods:
+
+METHOD 1:(Direct)
+-Compare the true and generated probability distributions, backpropagate the error
+-Generative Mathcing Networks
+
+METHOD 2:(Indirect)
+Train the generative network by making the 2 distributions go through a task, such that optimisatioon process of the generative network wrt task will make the generated distribution close to original.
+
+GAN follows method2, the task is a discrimination task between true and generated images.
+We have a discriminator that takes samples of true and generated data and try to classify them as well as possible,
+and a generator that fools the discriminator as much as possible.
+
+ARCHITECTURE
+-The generator is a neural network that models a transform function.
+-It takes a random variable as input and must return on trained a random variable that folloows targeted distribution
+-Another neural network for discriminatoor, it takes input and returns output the probabiity of it being a "true" one.
+
+The 2 networks are trained at same time with opposite goals:
+-goal of generator is to fool neural network, i.e. maximise the final classification error
+-goal of discriminator is tooo detect fake data i.e. minimise the final classification error
+-at iteration of training, weights of the 2 networks are updated accordingly
+
+input random variable -> generative netowkr to max error -> distribution generated -> discriminative too min error -> classification error
+-since opposite gooals, it gets its name adversarial network
+-both try to beat each other becoming better
+
+Training
+For training discriminator model, need performance of generator, better generation less update, bad generation more update
+Generator can be trained independently
+Discriminator can bve combined with output of generator
+we will mark output of the generator by gan model as 1, so that difference is high, and will update model to correct error
+while creating a GAN combining the generator and discriminator, the weight of generator is not trainable
+

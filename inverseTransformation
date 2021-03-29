@@ -1,0 +1,24 @@
+INVERSE TRANSFORMATION
+-It is a basic method for sampliong a psuedo-random number,
+-Its used for generating sample numbers at random from any proobability distribution given its function of cumulative distrbution
+-It includes the calculation of distribution oof cummulative distribution function, which maps 
+ a number to a domain with a porbability between 0 and 1.
+
+ cummulative distributive function(CDF)
+ -The cdf of a randdom variable X, evaluated at x is the probability X will take a values <= X
+ F(x)=P(X<=x)
+ -Eg. for uniform distribution between 0,1
+ F(x)=0, x<0
+      x, 0>=x>=1
+      1, x>1
+
+If X is a continuous random variable with cdf Fx, then random variable Y=F(X) has uniform distribution in [0,1]
+Inverse transform is the inverse of this, if Y has a uniform distribution in [0,1] andd X is cdf, F-1 has same distribution as X.
+
+-We want to generate values of X which are dustributed accroding to this distribution
+
+Method:
+1.Generate a random number u from unifrom distribution
+2.Find the inverse of the desired cdf
+3.Compute X=F-1(u)
+F(F-1(u)) = u
